@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Stores } from 'src/stores/entity/store.entity';
+import { StoreEntity } from 'src/stores/entity/storeEntity';
 
-@Entity()
-export class Themes {
+@Entity({ name: 'themes' })
+export class ThemeEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,6 +21,6 @@ export class Themes {
   @Column()
   price: number;
 
-  @ManyToOne(() => Stores, (store) => store.id)
+  @ManyToOne(() => StoreEntity, (store) => store.id)
   storeId: number;
 }
