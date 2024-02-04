@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { StoreController } from './storeController';
 import { StoreService } from './storeService';
-import { StoreRepository } from './entity/storeRepository';
+import { StoreRepository } from './storeRepository';
 
 @Module({
   imports: [],

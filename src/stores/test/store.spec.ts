@@ -9,7 +9,7 @@ describe('Store domain', () => {
   };
 
   it('should create store', () => {
-    const store = new Store(
+    const store = Store.of(
       storeInfo.name,
       storeInfo.location,
       storeInfo.telNumber,
