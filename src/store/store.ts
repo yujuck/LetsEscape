@@ -1,6 +1,8 @@
 class Store {
   name: string;
-  location: string;
+  address: string;
+  addressDetail?: string;
   telNumber: string;
   url: string;
+  coordinate: number;
 }
