@@ -1,26 +1,23 @@
-import puppeteer from 'puppeteer';
 import { Injectable } from '@nestjs/common';
+import { BeatPhobiaCrawler } from './beatPhobiaCrawler';
+import puppeteer from 'puppeteer';
 
 @Injectable()
 export class CrawlingService {
-  async getThemes() {
+  async runAllCrawlers() {
     const browser = await puppeteer.launch();
+    const beatPhobiaCrawler = new BeatPhobiaCrawler(browser);
 
     try {
-      const page = await browser.newPage();
-      await page.goto('https://xdungeon.net/layout/res/home.php?go=theme.list');
+      const [beatPhobiaData] = await Promise.all([beatPhobiaCrawler.crawl()]);
 
-      return await page.$$eval('.thm_list > ul > li', (item) => {
-        return item.map((el) => {
-          const title = el.querySelector('.thm').innerHTML;
-          const store = el.querySelector('.str').innerHTML;
-          const genre = el.querySelector('.gr').innerHTML;
-
-          return { store, title, genre };
-        });
-      });
+      return { beatPhobiaData };
+    } catch (error) {
+      throw error;
     } finally {
-      await browser.close();
+      if (browser) {
+        await browser.close();
+      }
     }
   }
 }

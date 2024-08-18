@@ -7,6 +7,6 @@ export class CrawlingController {
 
   @Get()
   async getThemes() {
-    return await this.crawlingService.getThemes();
+    return await this.crawlingService.runAllCrawlers();
   }
 }
