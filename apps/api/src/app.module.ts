@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { SupabaseModule } from './common/supabase';
 import { CrawlingModule } from './modules/crawling/crawling.module';
 
 @Module({
@@ -9,19 +9,7 @@ import { CrawlingModule } from './modules/crawling/crawling.module';
       envFilePath: '.env.local',
       isGlobal: true,
     }),
-    // TypeOrmModule.forRootAsync({
-    //   useFactory: (configService: ConfigService) => ({
-    //     type: 'postgres',
-    //     host: configService.get('DB_HOST'),
-    //     port: configService.get('DB_PORT'),
-    //     username: configService.get('DB_USERNAME'),
-    //     password: configService.get('DB_PASSWORD'),
-    //     database: configService.get('DB_DATABASE'),
-    //     synchronize: true, // 개발 환경에서만 사용
-    //     autoLoadEntities: true,
-    //   }),
-    //   inject: [ConfigService],
-    // }),
+    SupabaseModule,
     CrawlingModule,
   ],
   controllers: [],

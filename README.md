@@ -1,6 +1,6 @@
 # Let's Escape
 
-방탈출 정보 제공 및 후기 기록 애플리케이션
+방탈출 정보 제공 및 후기 기록 애플리케이션 + AI 테마 추천
 
 ## 프로젝트 구조
 
@@ -12,25 +12,24 @@ LetsEscape/
 │   │   │   ├── app/            # App Router (페이지)
 │   │   │   ├── components/     # UI 컴포넌트
 │   │   │   ├── hooks/          # 커스텀 훅
-│   │   │   ├── lib/            # 유틸리티
+│   │   │   ├── lib/            # 유틸리티 + Supabase
 │   │   │   └── styles/         # 스타일 (Tailwind)
 │   │   └── public/
 │   │
 │   └── api/                    # NestJS 백엔드
 │       ├── src/
+│       │   ├── common/         # 공통 모듈 (Supabase)
 │       │   ├── modules/        # 기능 모듈
-│       │   │   └── crawling/   # 크롤링 모듈
 │       │   └── main.ts
 │       └── test/
 │
 ├── packages/
 │   ├── shared/                 # 공유 타입/상수/유틸리티
-│   │   └── src/
-│   │       ├── types/          # 타입 정의
-│   │       ├── constants/      # 상수
-│   │       └── utils/          # 유틸리티 함수
 │   ├── eslint-config/          # 공유 ESLint 설정
 │   └── tsconfig/               # 공유 TypeScript 설정
+│
+├── docs/                       # 문서
+│   └── DECISIONS.md            # 기술 결정 문서
 │
 ├── pnpm-workspace.yaml
 ├── turbo.json
@@ -43,12 +42,25 @@ LetsEscape/
 
 - Node.js >= 18.0.0
 - pnpm >= 10.0.0
+- Supabase 계정
 
 ### 설치
 
 ```bash
 pnpm install
 ```
+
+### 환경 변수 설정
+
+```bash
+# API 환경 변수
+cp apps/api/.env.example apps/api/.env.local
+
+# Web 환경 변수
+cp apps/web/.env.example apps/web/.env.local
+```
+
+Supabase 대시보드에서 키를 확인하여 `.env.local` 파일에 입력하세요.
 
 ### 개발 서버 실행
 
@@ -94,6 +106,11 @@ pnpm clean      # 빌드 결과물 및 node_modules 삭제
 - **인기 순위**: 인기 테마 Top 5, 예약률 1위
 - **탈출 성공률**: 후기 데이터 기반 통계
 
+### AI 기능 (예정)
+- **AI 테마 추천 챗봇**: 자연어로 조건 입력 → 맞춤 테마 추천
+- **리뷰 요약**: 여러 리뷰를 AI가 요약
+- **자연어 검색**: "무섭지 않은 2인용 테마" 검색
+
 ## 기술 스택
 
 | 영역 | 기술 | 버전 |
@@ -102,11 +119,12 @@ pnpm clean      # 빌드 결과물 및 node_modules 삭제
 | 프론트엔드 | Next.js (App Router) | 16.x |
 | UI 라이브러리 | React | 19.x |
 | 백엔드 | NestJS | 11.x |
-| ORM | TypeORM | 0.3.x |
-| 데이터베이스 | PostgreSQL | - |
+| 데이터베이스 | Supabase (PostgreSQL) | - |
+| 인증 | Supabase Auth | - |
 | 스타일링 | Tailwind CSS | 4.x |
 | 상태관리 | TanStack Query | 5.x |
 | 크롤링 | Puppeteer | 24.x |
+| AI (예정) | Claude API / OpenAI | - |
 
 ## 워크스페이스 패키지
 
@@ -117,6 +135,11 @@ pnpm clean      # 빌드 결과물 및 node_modules 삭제
 | `@lets-escape/shared` | 공유 타입, 상수, 유틸리티 |
 | `@lets-escape/tsconfig` | 공유 TypeScript 설정 |
 | `@lets-escape/eslint-config` | 공유 ESLint 설정 |
+
+## 문서
+
+- [CLAUDE.md](./CLAUDE.md) - 프로젝트 컨텍스트 및 개발 가이드
+- [docs/DECISIONS.md](./docs/DECISIONS.md) - 기술 결정 문서
 
 ## 라이센스
 
