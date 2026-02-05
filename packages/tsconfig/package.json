@@ -1,0 +1,11 @@
+{
+  "name": "@lets-escape/tsconfig",
+  "version": "0.0.1",
+  "private": true,
+  "license": "UNLICENSED",
+  "files": [
+    "base.json",
+    "next.json",
+    "nest.json"
+  ]
+}
