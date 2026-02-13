@@ -1,11 +1,19 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Providers } from './providers';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  title: "Let's Escape - 방탈출 정보 & 후기",
-  description: '방탈출 테마 정보 제공 및 후기 기록 서비스',
+  title: "Let's Escape - 서울 방탈출 미션보드",
+  description: '서울 방탈출 테마 탐색, 매장 정보, 후기 기록 서비스',
 };
+
+const navItems = [
+  { href: '/', label: '홈' },
+  { href: '/themes', label: '테마' },
+  { href: '/stores', label: '매장' },
+  { href: '/reviews', label: '리뷰' },
+];
 
 export default function RootLayout({
   children,
@@ -16,37 +24,31 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <Providers>
-          <header className="bg-primary-600 text-white p-4">
-            <nav className="container mx-auto flex justify-between items-center">
-              <h1 className="text-xl font-bold">Let&apos;s Escape</h1>
-              <ul className="flex gap-4">
-                <li>
-                  <a href="/" className="hover:text-primary-200">
-                    홈
-                  </a>
-                </li>
-                <li>
-                  <a href="/themes" className="hover:text-primary-200">
-                    테마
-                  </a>
-                </li>
-                <li>
-                  <a href="/stores" className="hover:text-primary-200">
-                    매장
-                  </a>
-                </li>
-                <li>
-                  <a href="/reviews" className="hover:text-primary-200">
-                    리뷰
-                  </a>
-                </li>
-              </ul>
-            </nav>
+          <div className="background-glow" aria-hidden="true" />
+          <header className="site-header">
+            <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+              <Link href="/" className="brand-mark">
+                Let&apos;s Escape
+              </Link>
+              <nav>
+                <ul className="flex items-center gap-2 sm:gap-3">
+                  {navItems.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className="nav-link">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
           </header>
-          <main className="container mx-auto p-4">{children}</main>
-          <footer className="bg-gray-100 text-gray-600 p-4 mt-8">
-            <div className="container mx-auto text-center">
-              <p>&copy; 2024 Let&apos;s Escape. All rights reserved.</p>
+          <main className="mx-auto w-full max-w-6xl px-4 pb-14 pt-8 sm:px-6">
+            {children}
+          </main>
+          <footer className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6">
+            <div className="footer-panel">
+              <p>서울 방탈출 플레이어를 위한 미션 아카이브</p>
             </div>
           </footer>
         </Providers>
