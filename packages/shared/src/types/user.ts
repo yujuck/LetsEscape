@@ -1,24 +1,19 @@
 export interface User {
-  id?: number;
+  id?: string;
   nickname: string;
   email: string;
-  name: string;
-  password: string;
-  phone: string;
+  phone?: string;
+  role?: 'user' | 'admin';
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface CreateUserDto {
   nickname: string;
-  email: string;
-  name: string;
-  password: string;
-  phone: string;
+  phone?: string;
 }
 
 export interface UpdateUserDto {
   nickname?: string;
-  name?: string;
   phone?: string;
 }

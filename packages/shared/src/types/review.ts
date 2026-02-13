@@ -1,39 +1,46 @@
+import type { DifficultyLevel } from './theme';
+
+export type ReviewVisibility = 'public' | 'private';
+
 export interface Review {
   id?: number;
-  content: string;
-  isPrivate: boolean;
-  clear: boolean;
-  rating: number;
-  difficulty: number;
-  clearTime: string;
-  usedHint: number;
+  userId?: string;
+  themeId: number;
   title?: string;
+  content: string;
+  visibility: ReviewVisibility;
+  rating: number;
+  perceivedDifficulty?: DifficultyLevel;
+  cleared: boolean;
+  clearTimeMinutes?: number;
+  usedHintCount: number;
   tags?: string[];
-  likes?: number;
-  userId?: number;
-  themeId?: number;
+  likesCount?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface CreateReviewDto {
-  content: string;
-  isPrivate: boolean;
-  clear: boolean;
-  rating: number;
-  difficulty: number;
-  clearTime: string;
-  usedHint: number;
-  title?: string;
-  tags?: string[];
   themeId: number;
+  title?: string;
+  content: string;
+  visibility: ReviewVisibility;
+  rating: number;
+  perceivedDifficulty?: DifficultyLevel;
+  cleared: boolean;
+  clearTimeMinutes?: number;
+  usedHintCount: number;
+  tags?: string[];
 }
 
 export interface UpdateReviewDto {
-  content?: string;
-  isPrivate?: boolean;
-  rating?: number;
-  difficulty?: number;
   title?: string;
+  content?: string;
+  visibility?: ReviewVisibility;
+  rating?: number;
+  perceivedDifficulty?: DifficultyLevel;
+  cleared?: boolean;
+  clearTimeMinutes?: number;
+  usedHintCount?: number;
   tags?: string[];
 }

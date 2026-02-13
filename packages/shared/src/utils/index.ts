@@ -25,15 +25,22 @@ export function formatPrice(price: number): string {
   }).format(price);
 }
 
-export function getDifficultyLabel(difficulty: number): string {
-  const labels: Record<number, string> = {
-    1: '쉬움',
-    2: '보통',
-    3: '어려움',
-    4: '매우 어려움',
-    5: '극악',
+export function getDifficultyLabel(
+  difficulty: number | 'very_easy' | 'easy' | 'normal' | 'hard' | 'very_hard',
+): string {
+  const labels: Record<string, string> = {
+    '1': '쉬움',
+    '2': '보통',
+    '3': '어려움',
+    '4': '매우 어려움',
+    '5': '극악',
+    very_easy: '매우 쉬움',
+    easy: '쉬움',
+    normal: '보통',
+    hard: '어려움',
+    very_hard: '매우 어려움',
   };
-  return labels[difficulty] || '알 수 없음';
+  return labels[String(difficulty)] || '알 수 없음';
 }
 
 export function calculateSuccessRate(

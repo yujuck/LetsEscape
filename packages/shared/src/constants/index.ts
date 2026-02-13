@@ -8,7 +8,7 @@ export const API_ROUTES = {
   USERS: {
     BASE: '/users',
     ME: '/users/me',
-    BY_ID: (id: number) => `/users/${id}`,
+    BY_ID: (id: string) => `/users/${id}`,
   },
   STORES: {
     BASE: '/stores',
@@ -31,11 +31,11 @@ export const API_ROUTES = {
 } as const;
 
 export const DIFFICULTY_LEVELS = {
-  EASY: 1,
-  NORMAL: 2,
-  HARD: 3,
-  VERY_HARD: 4,
-  EXTREME: 5,
+  VERY_EASY: 'very_easy',
+  EASY: 'easy',
+  NORMAL: 'normal',
+  HARD: 'hard',
+  VERY_HARD: 'very_hard',
 } as const;
 
 export const RATING_RANGE = {
