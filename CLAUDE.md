@@ -110,8 +110,7 @@ pnpm format
 ### apps/api/.env.local
 ```bash
 SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_SECRET_KEY=your-secret-key
 PORT=3001
 NODE_ENV=development
 ```
@@ -119,8 +118,7 @@ NODE_ENV=development
 ### apps/web/.env.local
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 
 ## 코드 패턴
