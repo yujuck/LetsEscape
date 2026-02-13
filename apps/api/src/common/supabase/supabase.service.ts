@@ -4,7 +4,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class SupabaseService implements OnModuleInit {
-  private supabase: SupabaseClient;
+  private supabase!: SupabaseClient;
 
   constructor(private configService: ConfigService) {}
 
@@ -31,15 +31,15 @@ export class SupabaseService implements OnModuleInit {
   }
 
   // 편의 메서드들
-  from(table: string) {
+  from(table: string): ReturnType<SupabaseClient['from']> {
     return this.supabase.from(table);
   }
 
-  get auth() {
+  get auth(): SupabaseClient['auth'] {
     return this.supabase.auth;
   }
 
-  get storage() {
+  get storage(): SupabaseClient['storage'] {
     return this.supabase.storage;
   }
 }
